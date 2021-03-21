@@ -8,3 +8,5 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/SprinchakDmitri/movie-service'
             }
         }
+    }
+}
