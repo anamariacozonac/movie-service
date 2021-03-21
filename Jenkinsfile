@@ -5,6 +5,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/anamariacozonac/jgsu-spring-petclinic'
+                git branch: 'master', url: 'https://github.com/SprinchakDmitri/movie-service'
             }
         }
