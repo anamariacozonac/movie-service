@@ -1,12 +1,15 @@
 package com.daa.movieservice.api.restcontroller;
 
+import com.daa.movieservice.api.dto.CrewDto;
+import com.daa.movieservice.api.dto.MovieDto;
+import com.daa.movieservice.api.dto.ReviewDto;
+import com.daa.movieservice.api.dto.ShortMovieDto;
 import com.daa.movieservice.model.Movie;
+import com.daa.movieservice.service.CrewService;
 import com.daa.movieservice.service.MovieService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieController {
 
+    @Autowired
+    private final CrewService crewService;
+    @Autowired
     private final MovieService movieService;
 
     @GetMapping("/all")
@@ -23,8 +29,33 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public Movie getMovieById(@PathVariable Long id){
+    public MovieDto getMovieById(@PathVariable Long id){
         return movieService.getMovieById(id);
     }
 
+    @GetMapping("/getTop")
+    public List<ShortMovieDto> getTop(@RequestParam(defaultValue = "2") Integer number){
+        return movieService.getTopMovies(number);
+    }
+
+    @GetMapping("/getReviews")
+    public List<ReviewDto> getReviews(@RequestParam(name = "filmId") Long id){
+        return movieService.getReviews(id);
+    }
+
+    @GetMapping("/getFilm")
+    public MovieDto getMovie(@RequestParam(name = "filmId") Long id){
+        return movieService.getMovById(id);
+    }
+
+    @GetMapping("/getCrew")
+    public List<CrewDto> getCrew(@RequestParam(name = "filmId") Long id){
+        return crewService.getCrewByMovId(id);
+    }
+
+    @GetMapping("/getScore")
+    public List<CrewDto> getMovieScore (@RequestParam(name = "filmId") Long id){
+        return movieService.getMovScore(id);
+    }
 }
+
