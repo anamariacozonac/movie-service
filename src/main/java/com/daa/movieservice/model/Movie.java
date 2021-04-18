@@ -1,11 +1,7 @@
 package com.daa.movieservice.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -73,14 +69,15 @@ public class Movie {
     @JsonManagedReference
     private Set<Company> companies;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
     @JsonManagedReference
     private Set<Review> reviews;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
     @JsonManagedReference
     private Set<Article> articles;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    @JsonManagedReference
+    private Set<Crew> crew;
 }

@@ -16,4 +16,8 @@ public class PersonService {
     public List<Person> getPersons(){
         return personRepository.findAll();
     }
+
+    public Person getPersonById(Long id) {
+        return personRepository.findById(id).get();
+    }
 }

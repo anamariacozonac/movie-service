@@ -4,6 +4,7 @@ import com.daa.movieservice.model.Person;
 import com.daa.movieservice.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,8 @@ public class PersonController {
         return personService.getPersons();
     }
 
-
+//    @GetMapping("/{id}")
+//    public Person getPersonById(@PathVariable Long id){
+//        return personService.getPersonById(id);
+//    }
 }

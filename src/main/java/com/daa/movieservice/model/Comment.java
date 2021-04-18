@@ -1,8 +1,7 @@
 package com.daa.movieservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -26,12 +25,16 @@ public class Comment {
     @Column(name = "comment_date")
     private Date commentDate;
 
-    @Column(name = "positive_review_rating")
+    @Column(name = "positive_comment_rating")
     private Integer positiveCommentRating;
 
-    @Column(name = "negative_review_rating")
+    @Column(name = "negative_comment_rating")
     private Integer negativeCommentRating;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
     private User user;
 }

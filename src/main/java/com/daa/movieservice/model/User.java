@@ -31,13 +31,11 @@ public class User {
     @Column(name = "username")
     private String userName;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private Set<Article> articles;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private Set<Comment> comments;
 

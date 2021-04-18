@@ -1,8 +1,7 @@
 package com.daa.movieservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -30,22 +29,32 @@ public class Article {
     @Column(name = "movie_score")
     private Integer movieScore;
 
-    @Column(name = "positive_review_rating")
+    @Column(name = "positive_article_rating")
     private  Integer positiveRevRating;
 
-    @Column(name = "negative_review_rating")
+    @Column(name = "negative_article_rating")
     private  Integer negativeRevRating;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_article_comments",
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Comment> comments;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
     private Movie movie;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
     private User user;
 
 

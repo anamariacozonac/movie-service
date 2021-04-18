@@ -1,13 +1,15 @@
 package com.daa.movieservice.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_roles")
+@Data
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Role {
@@ -18,10 +20,16 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToOne
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_person_roles",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id"))
     @JsonBackReference
-    private Person person;
+    private Set<Person> persons;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonManagedReference
+    private Set<Crew> crews;
 }

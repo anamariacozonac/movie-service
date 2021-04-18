@@ -1,9 +1,8 @@
 package com.daa.movieservice.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -11,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table( name = "t_reviews")
+@Table(name = "t_reviews")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Review {
@@ -42,10 +41,14 @@ public class Review {
             inverseJoinColumns = @JoinColumn(name = "comment_id"))
     private Set<Comment> comments;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    @JsonBackReference
     private Movie movie;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
 }

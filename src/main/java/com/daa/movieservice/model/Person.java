@@ -1,9 +1,7 @@
 package com.daa.movieservice.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import javax.persistence.*;
@@ -51,17 +49,22 @@ public class Person {
     private String placeOfDeath;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "t_movies_countries",
-            joinColumns = @JoinColumn(name = "movie_id"),
+    @JoinTable(name = "t_persons_countries",
+            joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "country_id"))
     @JsonManagedReference
     private Set<Country> countries;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_person_roles",
-    joinColumns = @JoinColumn(name = "person_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonManagedReference
     private Set<Role> roles;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "person")
+    @JsonManagedReference
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Set<Crew> crews;
 }
