@@ -62,9 +62,11 @@ public class Person {
     @JsonManagedReference
     private Set<Role> roles;
 
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "person")
     @JsonManagedReference
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Crew> crews;
+
 }
