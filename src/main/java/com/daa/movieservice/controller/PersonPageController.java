@@ -12,6 +12,6 @@ public class PersonPageController {
 
     @GetMapping("/{id}")
     public ModelAndView person(@PathVariable Long id){
-        return new ModelAndView("person");
+        return new ModelAndView("person.html");
     }
 }
