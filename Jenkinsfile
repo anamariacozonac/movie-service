@@ -7,8 +7,11 @@ node{
   def namespace = 'development'
   def imageTag = "gcr.io/${project}/${appName}:${imageVersion}.${env.BUILD_NUMBER}"
   
-  //Checkout Code from Git
-  checkout scm
+
+    stage('Checkout Code from Git') {
+        //Checkout Code from Git
+         checkout scm
+        }
   
   //Stage 1 : Build the docker image.
   stage('Build image') {
