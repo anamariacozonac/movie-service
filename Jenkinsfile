@@ -15,7 +15,8 @@ node{
   
   //Stage 1 : Build the docker image.
   stage('Build image') {
-      sh("docker build -t ${imageTag} .")
+      sh './mvnw clean package'
+      //sh("docker build -t ${imageTag} .")
   }
   
   //Stage 2 : Push the image to docker registry
