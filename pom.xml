@@ -16,19 +16,25 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
+	<repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+  </repositories>
+	<dependencyManagement>
     <dependencies>
-             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-build-dependencies -->
-      <dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-build-dependencies</artifactId>
-    <version>3.0.0-M5</version>
-    <type>pom</type>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-sql-mysql -->
-   <dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-gcp-starter-sql-postgresql</artifactId>
-     </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Finchley.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -46,7 +52,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-sql-postgresql -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-gcp-starter-sql-postgresql</artifactId>
+    <version>1.0.0.M2</version>
+</dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
