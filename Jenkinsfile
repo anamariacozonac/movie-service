@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    dependencies {
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-sql-postgresql'
-}
+
     stages {
         stage('Checkout') {
             steps{
