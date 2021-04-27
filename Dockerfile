@@ -5,7 +5,7 @@ RUN ["java", "-version"]
 
 RUN mkdir /app
 
-COPY /target/demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
+COPY **/build/libs/demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
 
 #Port the container listens on
 EXPOSE 8081
