@@ -21,12 +21,6 @@ metadata:
 labels:
  component: test
 spec:
- containers:
- - name: golang
-   image: golang:1.10
-   command:
-   - cat
-   tty: true
  - name: gcloud
    image: gcr.io/cloud-builders/gcloud
    command:
@@ -53,14 +47,7 @@ spec:
                 // Run Maven on a Unix agent.
                 sh "chmod +x mvnw"
                 sh './mvnw clean package'
-              
-                //sh 'true'
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-
-
             post {
                 always {
                     junit '**/target/surefire-reports/TEST-*.xml'
