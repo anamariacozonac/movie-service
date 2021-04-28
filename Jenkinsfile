@@ -21,6 +21,7 @@ metadata:
 labels:
  component: test
 spec:
+ containers:
  - name: gcloud
    image: gcr.io/cloud-builders/gcloud
    command:
