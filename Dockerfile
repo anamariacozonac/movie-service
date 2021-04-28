@@ -5,9 +5,9 @@ RUN ["java", "-version"]
 
 RUN mkdir /app
 
-COPY target/demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
+COPY target/movie-service-0.0.1-SNAPSHOT.jar /app/movie-service-0.0.1-SNAPSHOT.jar
 
 #Port the container listens on
 EXPOSE 8081
 #CMD to be executed when docker is run.
-ENTRYPOINT ["java","-jar","app/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","app/movie-service-0.0.1-SNAPSHOT.jar"]
