@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.daa</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>movie-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Spring boot movie service</description>
